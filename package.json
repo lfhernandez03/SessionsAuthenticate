@@ -1,9 +1,24 @@
 {
+  "name": "sessions-authenticate",
+  "version": "1.0.0",
+  "description": "Proyecto de autenticación con sesiones",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
   "dependencies": {
     "connect-redis": "^9.0.0",
     "express": "^5.1.0",
     "express-session": "^1.18.2",
-    "nodemon": "^3.1.10",
     "redis": "^5.8.2"
-  }
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "",
+  "license": "ISC"
 }
