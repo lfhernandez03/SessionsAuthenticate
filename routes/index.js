@@ -1,21 +1,25 @@
 const express = require("express");
 const authenticate = require("../middleware/authenticate");
+const { login } = require("../controller/auth");
+const { profile } = require("../controller/profile");
+const { sessionInfo } = require("../controller/sessionInfo");
+const { redisStatus } = require("../controller/redis");
 
 const router = express.Router();
 
-router.post("/login", (req, res) => {
-  const { email, password } = req;
+// Rutas públicas
+router.post("/login", login);
+router.get("/redis-status", redisStatus); // Endpoint público para verificar Redis
 
-  req.session.clientId = "abc123";
-  req.session.myNum = 5;
-  res.json("You're now logged in");
-});
-
+// All routes that come after this middleware are protected
+// and can only be accessed if the user is logged in
 router.use(authenticate);
 
-router.get("/profile", (req, res) => {
-  res.json(req.session);
-});
+router.get("/profile", profile);
+
+// Endpoint para verificar tiempo restante de sesión
+router.get("/session-info", sessionInfo);
+
 
 module.exports = router;
 
