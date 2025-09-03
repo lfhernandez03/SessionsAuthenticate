@@ -11,8 +11,8 @@ const router = express.Router();
 router.post("/login", login);
 router.get("/redis-status", redisStatus); // Endpoint público para verificar Redis
 
-// All routes that come after this middleware are protected
-// and can only be accessed if the user is logged in
+// Todas las rutas que esten despues de este middleware estan protegidas
+// y solo pueden ser accedidas si el usuario esta loggeado
 router.use(authenticate);
 
 router.get("/profile", profile);
